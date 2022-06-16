@@ -1,27 +1,27 @@
+/* Import Building from 5-building.js
+   Implement class SkyHighBuilding with
+   constructor attributes with underscore
+   attribute */
 import Building from './5-building';
 
 export default class SkyHighBuilding extends Building {
-  constructor(sqft, floors) {
-    if (typeof sqft !== 'number') {
-      throw new TypeError('Sqft must be a number');
-    } else if (typeof floors !== 'number') {
-      throw new TypeError('Floors must be a number');
+    constructor(sqft, floors) {
+        super(sqft);
+        this._floors = floors;
     }
 
-    super(sqft);
-    this._sqft = sqft;
-    this._floors = floors;
-  }
+    // getter for sqft object
+    get sqft() {
+        return this._sqft;
+    }
 
-  get sqft() {
-    return this._sqft;
-  }
+    // getter for floors object
+    get floors() {
+        return this._floors;
+    }
 
-  get floors() {
-    return this._floors;
-  }
-
-  evacuationWarningMessage() {
-    return `Evacuate slowly the ${this._floors} floors.`;
-  }
+    // Overide the method
+    evacuationWarningMessage() {
+        return `Evacuate slowly the ${this.floors} floors`;
+    }
 }
