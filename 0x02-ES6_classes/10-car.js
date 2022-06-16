@@ -1,19 +1,26 @@
-export default class Car {
+/* Implement class Car
+   Constructor attributes: brand, motor, color
+   attribute stored in an underscore attribute */
+   export default class Car {
     constructor(brand, motor, color) {
-      if (typeof brand !== 'string') {
-        throw new TypeError('Brand must be a string');
-      } else if (typeof motor !== 'string') {
-        throw new TypeError('Motor must be a string');
-      } else if (typeof color !== 'string') {
-        throw new TypeError('Color must be a string');
-      }
-  
       this._brand = brand;
       this._motor = motor;
       this._color = color;
     }
   
-    cloneCar() {
+    /* define a static method get
+       Symbol is an object whose constructor
+       returns a symbol primitive
+       Symbol.species specifies a function-valued
+       property that the constructor function uses
+       to create derived objects */
+    static get [Symbol.species]() {
       return this;
+    }
+  
+    // Add method cloneCar
+    cloneCar() {
+      const Species = this.constructor[Symbol.species];
+      return new Species(this._brand, this._motor, this._color);
     }
   }
