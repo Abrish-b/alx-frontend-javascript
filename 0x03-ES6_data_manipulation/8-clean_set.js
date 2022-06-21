@@ -1,15 +1,14 @@
 /* Create a function cleanSet
    REturns startString and accepts two args */
    export default function cleanSet(set, startString) {
-    // ensure that the type is a string
-    if (startString && typeof startString === 'string') {
-      const arr = [];
-      for (const i of set) {
-        if (i.startsWith(startString)) {
-          arr.push(i.slice(startString.length));
-        }
+    if (!startString || typeof startString !== 'string') return '';
+  
+    const strList = [];
+    for (const str of set) {
+      if (typeof str === 'string' && str.startsWith(startString)) {
+        strList.push(str.slice(startString.length));
       }
-      return arr.join('-');
     }
-    return '';
+  
+    return strList.join('-');
   }
